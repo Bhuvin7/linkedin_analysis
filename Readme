@@ -1,0 +1,232 @@
+# 📊 LinkedIn Job Skills Demand Analysis Dashboard
+
+## 📌 Project Overview
+
+This project analyzes **job postings and required skills from LinkedIn data** to identify the most in-demand skills, competitive skills, and hiring trends across industries and locations.
+
+Using **Power BI**, the dataset was transformed and visualized to help understand:
+
+* Which skills are most demanded in the job market
+* Which skills have the highest applicant competition
+* Job distribution across industries and locations
+* Skill requirements for different job roles
+
+This dashboard provides insights useful for **job seekers, recruiters, and data analysts** to understand current hiring trends.
+
+---
+
+# 🧰 Tools & Technologies
+
+* **Power BI** – Data visualization and dashboard creation
+* **Power Query** – Data cleaning and transformation
+* **DAX (Data Analysis Expressions)** – Calculated measures and metrics
+* **Excel / CSV Dataset** – Source data
+
+---
+
+# 📂 Dataset Description
+
+The dataset contains job posting information collected from LinkedIn.
+
+### Main Columns
+
+| Column             | Description                         |
+| ------------------ | ----------------------------------- |
+| Company_Name       | Company posting the job             |
+| Class              | Job classification category         |
+| Designation        | Job role/title                      |
+| Location           | Job location                        |
+| Total_applicants   | Number of applicants for the job    |
+| LinkedIn_Followers | Followers of the company            |
+| Level              | Job level (Entry / Mid-Senior etc.) |
+| Involvement        | Job type or experience level        |
+| Employee_count     | Company size                        |
+| Industry           | Industry sector                     |
+| Dim_skill          | Skills required for the job         |
+
+---
+
+# 🔧 Data Transformation Process
+
+The dataset originally contained **skills as multiple columns**.
+
+Steps performed in **Power Query**:
+
+1. Removed unnecessary columns
+2. Converted skill columns into rows using **Unpivot Columns**
+3. Filtered rows where skill value = **1** (meaning skill required)
+4. Cleaned and standardized column names
+5. Loaded the transformed dataset into Power BI
+
+Final dataset structure allows **skill-level analysis** across jobs.
+
+---
+
+# 📊 Dashboard Features
+
+## Overview Dashboard
+
+Provides a high-level summary of the job market.
+
+**Key Metrics**
+
+* Total Jobs
+* Total Applicants
+* Total Companies
+* Average Applicants per Job
+
+**Visualizations**
+
+* Jobs by Industry
+* Jobs by Location
+* Top Skills Required
+* Skills Distribution
+
+---
+
+## Skill Insights Dashboard
+
+This page focuses on **skill demand and competition**.
+
+**Visualizations Included**
+
+### 🔹 Top Skills Demand
+
+Shows the most frequently required skills in job postings.
+
+### 🔹 Applicants per Skill
+
+Displays how many applicants compete for jobs requiring each skill.
+
+### 🔹 Top 10 Most Competitive Skills
+
+Skills with the **highest applicant-to-job ratio**.
+
+### 🔹 Skill Demand by Job Role
+
+Shows which skills are required for different designations.
+
+---
+
+# 📈 Key DAX Measures
+
+### Total Jobs
+
+```DAX
+Total Jobs = COUNTROWS(Fact_jobskills)
+```
+
+### Total Applicants
+
+```DAX
+Total Applicants = SUM(Fact_jobskills[Total_applicants])
+```
+
+### Total Companies
+
+```DAX
+Total Companies = DISTINCTCOUNT(Fact_jobskills[Company_Name])
+```
+
+### Skill Demand
+
+```DAX
+Skill Demand = COUNT(Fact_jobskills[Dim_skill])
+```
+
+### Applicants per Skill
+
+```DAX
+Applicants per Skill =
+DIVIDE(
+    [Total Applicants],
+    [Skill Demand],
+    0
+)
+```
+
+---
+
+# 🎯 Project Insights
+
+Some insights discovered from the analysis:
+
+* AI and UI skills appear among the **most demanded skills**
+* Certain skills have **high demand but lower applicant competition**
+* Job opportunities are concentrated in **specific locations and industries**
+* Some roles require **multiple technical skills simultaneously**
+
+---
+
+# 📷 Dashboard Preview
+
+*(Add screenshots of your dashboard here)*
+
+Example:
+
+* Overview Dashboard
+* Skill Insights Dashboard
+
+---
+
+# 🚀 How to Use
+
+1. Download the **Power BI (.pbix) file**
+2. Open it in **Power BI Desktop**
+3. Interact with the dashboard using slicers:
+
+   * Location
+   * Industry
+   * Job Role
+   * Skill
+
+Users can explore the job market dynamically.
+
+---
+
+# 📁 Project Structure
+
+```
+LinkedIn-Skills-Dashboard
+│
+├── dataset
+│   └── linkedin_jobs_dataset.csv
+│
+├── dashboard
+│   └── linkedin_skills_dashboard.pbix
+│
+├── images
+│   └── dashboard_preview.png
+│
+└── README.md
+```
+
+---
+
+# 💡 Future Improvements
+
+Possible enhancements:
+
+* Add **salary insights**
+* Include **time-based hiring trends**
+* Build a **skill recommendation system**
+* Add **machine learning skill clustering**
+
+---
+
+# 👨‍💻 Author
+
+**Bhuvesh R**
+
+Portfolio
+https://bhuvin7.github.io/Portfolio/
+
+GitHub
+https://github.com/Bhuvin7
+
+LinkedIn
+https://www.linkedin.com/in/bhuvesh-r-0a8151229
+
+---
+
+⭐ If you found this project useful, consider giving it a **star** on GitHub!
